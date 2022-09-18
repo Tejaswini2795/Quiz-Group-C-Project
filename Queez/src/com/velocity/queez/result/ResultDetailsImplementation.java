@@ -22,13 +22,10 @@ public class ResultDetailsImplementation implements ResultDetails {
 	
 	@Override
 	public void getcalculatedResult(int studentId, Map<Integer, String> studentAnswers) {
-		// TODO Auto-generated method
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "root");
-
-		} catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			GetDbConnection connection = new GetDbConnection();
+			con = connection.getConnection();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -65,18 +62,18 @@ public class ResultDetailsImplementation implements ResultDetails {
 
 	}
 	
-	public static void main(String[] args) {
-		//trial code
-		Map<Integer, String> studentAnswers = new HashMap();
-		studentAnswers.put(1,"A");
-		studentAnswers.put(2,"C");
-		studentAnswers.put(3,"B");
-		studentAnswers.put(4,"A");
-		studentAnswers.put(5,"C");
-		ResultDetailsImplementation rs = new ResultDetailsImplementation();
-		rs.getcalculatedResult(1, studentAnswers);
-		System.out.println("Ended program");
-		
-	}
+//	public static void main(String[] args) {
+//		//trial code
+//		Map<Integer, String> studentAnswers = new HashMap();
+//		studentAnswers.put(1,"A");
+//		studentAnswers.put(2,"C");
+//		studentAnswers.put(3,"B");
+//		studentAnswers.put(4,"A");
+//		studentAnswers.put(5,"C");
+//		ResultDetailsImplementation rs = new ResultDetailsImplementation();
+//		rs.getcalculatedResult(1, studentAnswers);
+//		System.out.println("Ended program");
+//		
+//	}
 
 }
