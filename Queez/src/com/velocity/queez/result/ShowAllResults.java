@@ -13,17 +13,22 @@ public class ShowAllResults {
 			GetDbConnection connection = new GetDbConnection();
 			con = connection.getConnection();
 			
+			
 			ps = con.prepareStatement("select marksObtained,Total_marks,Grade,Stud_Id from result where Stud_Id="+studentID);
 			ResultSet rs = ps.executeQuery();
 			System.out.println("---------------------------- Your Reults -------------------------------");
 			System.out.println("  Obtained Marks      Out of \t\t Grade \t       Student ID");
 			System.out.println("------------------------------------------------------------------------");
-			while(rs.next()) {
-				System.out.println("\t"+rs.getInt(1)+"\t\t"+rs.getInt(2)+"\t\t"+rs.getString(3)+"\t\t   "+rs.getInt(4));
+			if(rs.next()!=false) {
+				while(rs.next()) {
+					System.out.println("\t"+rs.getInt(1)+"\t\t"+rs.getInt(2)+"\t\t"+rs.getString(3)+"\t\t   "+rs.getInt(4));
+				}
+			}else {
+				System.out.println("No Data");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		}catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public void displayAllResult(){
@@ -33,11 +38,15 @@ public class ShowAllResults {
 			
 			ps = con.prepareStatement("select marksObtained,Total_marks,Grade,Stud_Id from result");
 			ResultSet rs = ps.executeQuery();
-			System.out.println("---------------------------- Your Reults -------------------------------");
+			System.out.println("------------------------------- Reults ---------------------------------");
 			System.out.println("  Obtained Marks      Out of \t\t Grade \t       Student ID");
 			System.out.println("------------------------------------------------------------------------");
-			while(rs.next()) {
-				System.out.println("\t"+rs.getInt(1)+"\t\t"+rs.getInt(2)+"\t\t"+rs.getString(3)+"\t\t   "+rs.getInt(4));
+			if(rs.next()!=false) {
+				while(rs.next()) {
+					System.out.println("\t"+rs.getInt(1)+"\t\t"+rs.getInt(2)+"\t\t"+rs.getString(3)+"\t\t   "+rs.getInt(4));
+				}
+			}else {
+				System.out.println("No Data");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

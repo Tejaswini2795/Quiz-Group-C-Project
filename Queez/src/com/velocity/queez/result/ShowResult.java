@@ -26,7 +26,7 @@ public class ShowResult {
 		
 		System.out.println("1. View Student Result");
 		System.out.println("2. Administrator Access");
-		System.out.println("Enter Your Option: ");
+		System.out.println("\nEnter Your Option: ");
 		int i = sc.nextInt();
 		
 		
@@ -37,17 +37,22 @@ public class ShowResult {
 			results.displayStudResult(j);
 			break;
 		}case 2:{
-			System.out.println("Enter Administrator UserName:");
-			String name = sc.next();
-			
-			System.out.println("Enter Password:");
-			String password = sc.next();
-			
-			if(userName.equals(name) && pass.equals(password)) {
-				results.displayAllResult();
-				}else {
-					System.out.println("Please Enter correct User Name and Password...");
-				}
+			boolean flag = false;
+			do {
+				System.out.println("\nEnter Administrator UserName:");
+				String name = sc.next();
+				
+				System.out.println("\nEnter Password:");
+				String password = sc.next();
+				
+				if(userName.equals(name) && pass.equals(password)) {
+					flag = true;
+					results.displayAllResult();
+					}else {
+						System.out.println("Please Enter correct User Name and Password...\n");
+					}
+				
+			} while (flag == false);
 			break;
 		}
 		default:{
@@ -67,6 +72,11 @@ public class ShowResult {
 				GetDbConnection connection = new GetDbConnection();
 				con = connection.getConnection();
 				
+					//This will Update is isAttempted flag to 1 after successful submission
+					ps = con.prepareStatement("update Student set isAttempted = if(isAttempted=0,1,isAttempted) where Stud_Id="+ studentID);
+					int u = ps.executeUpdate();
+					System.out.println(u);
+				//This will Insert data in result table	
 				ps = con.prepareStatement("insert into result (marksObtained,Grade,Stud_Id) values (?,?,?)");
 				
 				System.out.println("Your "+studentID+" obtained Marks: ");
@@ -84,12 +94,12 @@ public class ShowResult {
 					System.out.println(grade3+" With "+ mark);
 					ps.setString(2, grade3);
 				}else {
-					System.out.println("You are Fail!, you got: "+grade4+" With "+ mark);
+					System.out.println("You are Fail!, you got: "+grade4+" With "+ mark+" marks");
 					ps.setString(2, grade4);
 				}
 				
 				int i = ps.executeUpdate();
-				System.out.println("Data Updated Successfully...."+ i);
+				System.out.println("\nData Updated Successfully...."+ i);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
