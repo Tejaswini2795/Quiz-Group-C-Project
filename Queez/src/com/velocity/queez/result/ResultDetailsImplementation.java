@@ -33,7 +33,7 @@ public class ResultDetailsImplementation implements ResultDetails {
 
 		if (con != null) {
 			try {
-				String Query = "Select QuestionId, Answer from question";
+				String Query = "Select Question_Id, Answer from question";
 				ps = con.prepareStatement(Query);
 				rs = ps.executeQuery();
 				System.out.println("Result set:"+rs);
