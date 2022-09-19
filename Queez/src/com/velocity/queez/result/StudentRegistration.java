@@ -1,4 +1,4 @@
-package com.test.miniproject;
+package com.velocity.queez.result;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
