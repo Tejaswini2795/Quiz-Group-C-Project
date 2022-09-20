@@ -1,4 +1,4 @@
-package com.min_project;
+package com.velocity.queez.result;
 
 import java.util.HashMap;
 import java.util.Map;

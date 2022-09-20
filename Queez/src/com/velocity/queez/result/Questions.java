@@ -1,4 +1,4 @@
-package com.min_project;
+package com.velocity.queez.result;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ public class Questions {
 	
 	Map<Integer,String> test()
 	{
-		ConnectionTest obj=new ConnectionTest();
+		GetDbConnection obj=new GetDbConnection();
 		Map<Integer,String> q_map=new HashMap<Integer,String>();
 		try {
 			con=obj.getConnection();
