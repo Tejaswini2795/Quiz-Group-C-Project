@@ -15,7 +15,7 @@ public class Give_Test {
 		super();
 		this.stud_id = stud_id;
 	}
-	Map<Integer,Map<Integer,String>> questionM() 
+	public void questionM() 
 	{
 	  
 	  Questions questions=new Questions();
@@ -30,7 +30,6 @@ public class Give_Test {
 	  Options options=new Options();
 	  Map<Integer, Object> op = options.set();
 	  Map<Integer,String> answers=new HashMap<Integer,String>();
-	  Map<Integer,Map<Integer,String>> hm=new HashMap<Integer,Map<Integer,String>>();
 	  Scanner sc1=new Scanner(System.in);
 	  
 	  
@@ -47,12 +46,11 @@ public class Give_Test {
 		 answers.put(no, ans);
 	  }
 	 
-	  hm.put(stud_id, answers);
+	  ResultDetailsImplementation resultDetailsImplementation = new ResultDetailsImplementation();
+	  resultDetailsImplementation.getcalculatedResult(stud_id,answers);
 	  
 	  sc1.close();
-	  return hm;
-	  
-	  
+	   
 	}
 	
 	
