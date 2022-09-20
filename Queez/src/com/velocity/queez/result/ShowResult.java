@@ -26,6 +26,7 @@ public class ShowResult {
 		
 		System.out.println("1. View Student Result");
 		System.out.println("2. Administrator Access");
+		System.out.println("3. Start Test");
 		System.out.println("\nEnter Your Option: ");
 		int i = sc.nextInt();
 		
@@ -54,11 +55,17 @@ public class ShowResult {
 				
 			} while (flag == false);
 			break;
+		}case 3:{
+			System.out.println("Start Your test");
+			System.out.println("Enter Student ID: ");
+			int j = sc.nextInt();
+			Give_Test giveTest = new Give_Test(j);
+			giveTest.questionM();
+			break;
 		}
 		default:{
 			System.out.println("Please Enter Vaild Option");
-			ShowResult result = new ShowResult();
-			result.showOption();
+
 		}
 	  }
 		sc.close();
@@ -79,7 +86,7 @@ public class ShowResult {
 				//This will Insert data in result table	
 				ps = con.prepareStatement("insert into result (marksObtained,Grade,Stud_Id) values (?,?,?)");
 				
-				System.out.println("Your "+studentID+" obtained Marks: ");
+				System.out.println("Student "+studentID+" obtained Marks: ");
 				
 				ps.setString(1, mark);
 				ps.setString(3, id);
@@ -94,7 +101,7 @@ public class ShowResult {
 					System.out.println(grade3+" With "+ mark);
 					ps.setString(2, grade3);
 				}else {
-					System.out.println("You are Fail!, you got: "+grade4+" With "+ mark+" marks");
+					System.out.println(" You got: "+grade4+" With "+ mark+" marks");
 					ps.setString(2, grade4);
 				}
 				

@@ -4,8 +4,8 @@ package com.velocity.queez.result;
 public class Test {
 
 	public static void main(String[] args) {
-		ShowResult result = new ShowResult();
+		MainOptions option = new MainOptions();
 		//result.displayResult(2, 8);
-		result.showOption();
+		option.mainOptions();
 	}
 }

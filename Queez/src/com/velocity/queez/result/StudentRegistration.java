@@ -46,10 +46,21 @@ public class StudentRegistration
 				}
 			ps = con.prepareStatement("select Stud_Id from student where Email_Id = '" + Email_Id + "'");
 			rs = ps.executeQuery();
+			Scanner sc = new Scanner(System.in);
 			while(rs.next()) {
 					System.out.println("Your ID is :"+rs.getInt(1));
 					System.out.println("Keep this ID for Feature Use");
+					System.out.println("Start Test?");
+					System.out.println("Yes/No");
+					
+					String sr = sc.next();
+					if(sr.equals("yes")) {
+						Give_Test test = new Give_Test(rs.getInt(1));
+						test.questionM();
+					}
+					
 				}
+			sc.close();
 		}
 		
 		catch(Exception e)

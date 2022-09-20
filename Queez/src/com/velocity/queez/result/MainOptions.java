@@ -10,12 +10,13 @@ public class MainOptions {
 		ShowResult al = new ShowResult();
 		
 		Scanner sc = new Scanner(System.in);
+		Scanner sc1 = new Scanner(System.in);
 		System.out.println("Welocme\n ");
 		
 		System.out.println("1. Student Registration");
 		System.out.println("2. See Results\n");
 		System.out.println("Select Option:\n");
-		int option = sc.nextInt();
+		int option = sc1.nextInt();
 		
 		
 				switch (option) {
@@ -55,5 +56,6 @@ public class MainOptions {
 					}
 				}
 			sc.close();
+			sc1.close();
 	}
 }
