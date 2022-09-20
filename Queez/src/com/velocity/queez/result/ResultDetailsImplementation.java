@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ResultDetailsImplementation implements ResultDetails {
+ class ResultDetailsImplementation implements ResultDetails {
 
 	Connection con = null;
 	PreparedStatement ps = null;
@@ -28,7 +28,7 @@ public class ResultDetailsImplementation implements ResultDetails {
 
 		if (con != null) {
 			try {
-				String Query = "Select Question_Id, Answer from question";
+				String Query = "Select Question_Id, Answer from questions";
 				ps = con.prepareStatement(Query);
 				rs = ps.executeQuery();
 				HashMap<Integer, String> actualAnswer = new HashMap<Integer, String>();
@@ -39,7 +39,7 @@ public class ResultDetailsImplementation implements ResultDetails {
 				Set<Integer> answerSet = actualAnswer.keySet();
 
 				for (Integer id : answerSet) {
-					if (actualAnswer.get(id).equals(studentAnswers.get(id)))
+					if (actualAnswer.get(id).equals(studentAnswers.get(id).toUpperCase()))
 						marksObtained++;
 				}
 				ShowResult showResult = new ShowResult();
