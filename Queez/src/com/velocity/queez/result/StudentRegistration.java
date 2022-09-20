@@ -12,6 +12,7 @@ public class StudentRegistration
 {
 	PreparedStatement ps = null;
 	Connection con = null;
+	ResultSet rs = null;
 	
 	public void registerStudent(String First_Name, String Last_Name, String Email_Id)
 	{
@@ -28,20 +29,26 @@ public class StudentRegistration
 			try
 			{
 				stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
+				rs = stmt.executeQuery(query);
 				if(rs.next())
 			 {
-				System.out.println("Email already exist!!");
+				System.out.println("User already exist!!");
 			 }
 				else
 				{
 					int i = ps.executeUpdate();
-					System.out.println("Student registered successfully ");
+					System.out.println("Registered successfully");
 				}
 		     	}
 				catch(SQLException e)
 				{
 					e.printStackTrace();
+				}
+			ps = con.prepareStatement("select Stud_Id from student where Email_Id = '" + Email_Id + "'");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+					System.out.println("Your ID is :"+rs.getInt(1));
+					System.out.println("Keep this ID for Feature Use");
 				}
 		}
 		
@@ -62,8 +69,9 @@ public class StudentRegistration
 	return pattern.matcher(Email_Id).matches();
 	}
 	
-	public static void main(String args[])
+	public void getData()
 	{
+		StudentRegistration studentRegistration = new StudentRegistration();
 		Scanner sc = new Scanner(System.in);
 		
 			System.out.println("Enter first name : "); 
@@ -74,19 +82,16 @@ public class StudentRegistration
 			String Email_Id = sc.next();
 			boolean result = isValid(Email_Id);
 			
-			if (result == true)
-			{
-			//	System.out.println("Provided email address "+ Email_Id + " is valid \n");
-			}
-			
-			else
+			if (result != true)
 			{
 				System.out.println("Provided email address "+ Email_Id + " is invalid \n");
+				System.out.println("Please Re-enter details\n");
+				studentRegistration.getData();
 			}
+			else
+				studentRegistration.registerStudent(First_Name, Last_Name, Email_Id);
 			
-			StudentRegistration studentRegistration = new StudentRegistration();
-			studentRegistration.registerStudent(First_Name, Last_Name, Email_Id);
 		
 		    sc.close();
-}
+	}
 }	
